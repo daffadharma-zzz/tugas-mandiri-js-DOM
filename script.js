@@ -1,6 +1,12 @@
 const inputTask = document.getElementById('inputTask');
 const listContainer = document.getElementById('listContainer');
 const tombol = document.getElementById('tombol');
+const selectAllButton = document.getElementById('selectAll');
+
+selectAllButton.onclick = function() {
+    listContainer.querySelectorAll('li').forEach(task => task.classList.add('done'));
+    saveData();
+}
 
 tombol.onclick = function() {
     if (inputTask.value === '') {

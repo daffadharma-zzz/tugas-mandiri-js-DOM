@@ -54,7 +54,7 @@
         color: #f0fdf4;
     }
     
-    #tombol {
+    #tombol, #selectAll {
         border: none;
         outline: none;
         padding: 10px 20px;
@@ -65,9 +65,13 @@
         border-radius: 40px;
     }
     
-    #tombol:hover {
+    #tombol:hover, #selectAll:hover {
         background: linear-gradient(135deg, #4ade80, #15803d);
         color: #052e16;
+    }
+
+    #selectAll {
+        margin: -12px 0 12px;
     }
     
     #listContainer li {
