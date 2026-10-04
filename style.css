@@ -7,14 +7,15 @@
     .container {
         width: 100%;
         min-height: 100vh;
-        background: linear-gradient(135deg, #c2e0ff, #ffb3d6);
+        background: linear-gradient(135deg, #16a34a 0%, #064e3b 42%, #050505 100%);
         padding: 10px;
     }
     
     .toDo {
         width: 100%;
         max-width: 500px;
-        background-color: rgba(255, 255, 255, 0.75);
+        background-color: rgba(8, 18, 12, 0.88);
+        color: #f0fdf4;
         margin: 100px auto 20px;
         padding: 40px 30px 70px;
         border-radius: 10px;
@@ -23,7 +24,7 @@
     .toDo h1 {
         margin-bottom: 30px;
         font-size: 30px;
-        color: #232323;
+        color: #f0fdf4;
         display: flex;
         align-items: center;
     }
@@ -37,7 +38,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background-color: #eaeaea;
+        background-color: #173326;
         border-radius: 30px;
         padding-left: 10px;
         margin-bottom: 25px;
@@ -50,29 +51,44 @@
         padding: 10px;
         background: transparent;
         font-size: 16px;
+        color: #f0fdf4;
     }
     
-    #tombol {
+    #tombol, #selectAll, #deleteDone {
         border: none;
         outline: none;
         padding: 10px 20px;
-        background: #7f49d7;
+        background: linear-gradient(135deg, #22c55e, #064e3b 80%, #050505);
         color: #ffffff;
         font-size: 16px;
         cursor: pointer;
         border-radius: 40px;
     }
     
-    #tombol:hover {
-        background: #d4c2f5;
-        color: #232323;
+    #tombol:hover, #selectAll:hover {
+        background: linear-gradient(135deg, #4ade80, #15803d);
+        color: #052e16;
+    }
+
+    #deleteDone {
+        margin-left: 8px;
+        background: linear-gradient(135deg, #ef4444, #991b1b);
+    }
+
+    #deleteDone:hover {
+        background: linear-gradient(135deg, #f87171, #b91c1c);
+    }
+
+    #selectAll {
+        margin: -12px 0 12px;
     }
     
     #listContainer li {
         list-style: none;
         padding: 12px 8px 10px 50px;
         font-size: 17px;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #28543a;
+        color: #dcfce7;
         user-select: none;
         cursor: pointer;
         position: relative;
@@ -87,20 +103,20 @@
     }
     
     #listContainer li.done {
-        color: #888;
+        color: #86a894;
         text-decoration: line-through;
     }
     
     #listContainer li.done::before {
         content: "\2611";
-        color: #27ae60;
+        color: #4ade80;
     }
     
     #listContainer li span {
         position: absolute;
         right: 0;
         top: 0px;
-        color: #888;
+        color: #86a894;
         width: 40px;
         height: 40px;
         font-size: 22px;
@@ -110,6 +126,6 @@
     }
     
     #listContainer li span:hover {
-        background: #ccc;
-        color: #fff;
+        background: #28543a;
+        color: #f0fdf4;
     }
