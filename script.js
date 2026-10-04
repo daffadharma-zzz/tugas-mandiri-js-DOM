@@ -2,6 +2,12 @@ const inputTask = document.getElementById('inputTask');
 const listContainer = document.getElementById('listContainer');
 const tombol = document.getElementById('tombol');
 const selectAllButton = document.getElementById('selectAll');
+const deleteDoneButton = document.getElementById('deleteDone');
+
+deleteDoneButton.onclick = function() {
+    listContainer.querySelectorAll('li.done').forEach(task => task.remove());
+    saveData();
+}
 
 selectAllButton.onclick = function() {
     listContainer.querySelectorAll('li').forEach(task => task.classList.add('done'));

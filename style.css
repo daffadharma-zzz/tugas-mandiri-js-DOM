@@ -54,7 +54,7 @@
         color: #f0fdf4;
     }
     
-    #tombol, #selectAll {
+    #tombol, #selectAll, #deleteDone {
         border: none;
         outline: none;
         padding: 10px 20px;
@@ -68,6 +68,15 @@
     #tombol:hover, #selectAll:hover {
         background: linear-gradient(135deg, #4ade80, #15803d);
         color: #052e16;
+    }
+
+    #deleteDone {
+        margin-left: 8px;
+        background: linear-gradient(135deg, #ef4444, #991b1b);
+    }
+
+    #deleteDone:hover {
+        background: linear-gradient(135deg, #f87171, #b91c1c);
     }
 
     #selectAll {
