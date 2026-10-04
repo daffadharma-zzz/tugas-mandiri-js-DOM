@@ -4,6 +4,10 @@
         box-sizing: border-box;
     }
     
+    body {
+        font-family: Arial, sans-serif;
+    }
+
     .container {
         width: 100%;
         min-height: 100vh;
@@ -41,7 +45,13 @@
         background-color: #173326;
         border-radius: 30px;
         padding-left: 10px;
-        margin-bottom: 25px;
+        margin-bottom: 10px;
+    }
+
+    .warning {
+        color: #fca5a5;
+        font-size: 14px;
+        margin-bottom: 14px;
     }
     
     input {
@@ -52,6 +62,12 @@
         background: transparent;
         font-size: 16px;
         color: #f0fdf4;
+    }
+
+    .action-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 18px;
     }
     
     #tombol, #selectAll, #deleteDone {
@@ -71,7 +87,6 @@
     }
 
     #deleteDone {
-        margin-left: 8px;
         background: linear-gradient(135deg, #ef4444, #991b1b);
     }
 
@@ -79,8 +94,30 @@
         background: linear-gradient(135deg, #f87171, #b91c1c);
     }
 
-    #selectAll {
-        margin: -12px 0 12px;
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: 12px 0 18px;
+    }
+
+    .stat-box {
+        background: rgba(30, 64, 52, 0.9);
+        border-radius: 10px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .stat-box span {
+        display: block;
+        font-size: 12px;
+        color: #bbf7d0;
+        margin-bottom: 4px;
+    }
+
+    .stat-box strong {
+        font-size: 22px;
+        color: #f0fdf4;
     }
     
     #listContainer li {
@@ -102,12 +139,12 @@
         bottom: 6px;
     }
     
-    #listContainer li.done {
+    #listContainer li.completed {
         color: #86a894;
         text-decoration: line-through;
     }
     
-    #listContainer li.done::before {
+    #listContainer li.completed::before {
         content: "\2611";
         color: #4ade80;
     }

@@ -3,48 +3,96 @@ const listContainer = document.getElementById('listContainer');
 const tombol = document.getElementById('tombol');
 const selectAllButton = document.getElementById('selectAll');
 const deleteDoneButton = document.getElementById('deleteDone');
+const warningMessage = document.getElementById('warningMessage');
+const totalTasks = document.getElementById('totalTasks');
+const completedTasks = document.getElementById('completedTasks');
+const remainingTasks = document.getElementById('remainingTasks');
+
+function showWarning(message) {
+    warningMessage.textContent = message;
+    warningMessage.hidden = false;
+}
+
+function hideWarning() {
+    warningMessage.hidden = true;
+}
+
+function updateStats() {
+    const tasks = listContainer.querySelectorAll('li');
+    const doneCount = listContainer.querySelectorAll('li.completed').length;
+
+    totalTasks.textContent = tasks.length;
+    completedTasks.textContent = doneCount;
+    remainingTasks.textContent = tasks.length - doneCount;
+}
+
+function saveData() {
+    localStorage.setItem('data', listContainer.innerHTML);
+    updateStats();
+}
+
+function addTask() {
+    const value = inputTask.value.trim();
+
+    if (!value) {
+        showWarning('Masukkan tugas terlebih dahulu.');
+        inputTask.focus();
+        return;
+    }
+
+    hideWarning();
+
+    const li = document.createElement('li');
+    li.textContent = value;
+
+    const span = document.createElement('span');
+    span.textContent = '\u00d7';
+    li.append(span);
+
+    listContainer.append(li);
+    inputTask.value = '';
+    saveData();
+    inputTask.focus();
+}
 
 deleteDoneButton.onclick = function() {
-    listContainer.querySelectorAll('li.done').forEach(task => task.remove());
+    listContainer.querySelectorAll('li.completed').forEach(task => task.remove());
     saveData();
 }
 
 selectAllButton.onclick = function() {
-    listContainer.querySelectorAll('li').forEach(task => task.classList.add('done'));
+    listContainer.querySelectorAll('li').forEach(task => task.classList.add('completed'));
     saveData();
 }
 
-tombol.onclick = function() {
-    if (inputTask.value === '') {
-        alert('Kamu belum memasukkan to do list!');
-    } else {
-        let li = document.createElement('li');
-        li.textContent = inputTask.value;
-        listContainer.append(li);
-        let span = document.createElement('span');
-        span.textContent = '\u00d7';
-        li.append(span);
-        inputTask.value = '';
-    }
-    saveData();
-}
+tombol.onclick = addTask;
 
-listContainer.addEventListener('click', function(e) {
-    if (e.target.tagName === 'LI') {
-        e.target.classList.toggle('done');
-
-    } else if (e.target.tagName === 'SPAN') {
-        e.target.parentElement.remove();
+inputTask.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        addTask();
     }
-    saveData();
 });
 
-function saveData() {
-    localStorage.setItem('data', listContainer.innerHTML);
-}
+listContainer.addEventListener('click', function(e) {
+    const li = e.target.closest('li');
+    const removeButton = e.target.closest('span');
+
+    if (removeButton) {
+        removeButton.parentElement.remove();
+        saveData();
+        return;
+    }
+
+    if (li) {
+        li.classList.toggle('completed');
+        saveData();
+    }
+});
 
 function showTask() {
-    listContainer.innerHTML = localStorage.getItem('data');
+    listContainer.innerHTML = localStorage.getItem('data') || '';
+    updateStats();
 }
 
 showTask();
